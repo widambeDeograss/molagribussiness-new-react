@@ -71,3 +71,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@keyframes scroll-indicator {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 2s ease-in-out infinite;
+}

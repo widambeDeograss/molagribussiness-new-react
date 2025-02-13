@@ -1,13 +1,25 @@
-import { Carousel,Image } from "antd";
-import  { useEffect, useState } from "react";
+import { Carousel, Image } from "antd";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Article from "../../components/HomeArticle";
 import FollowUs from "../../components/FollowUs";
-import  {CardArticle} from "../../components/Articles";
+import { CardArticle } from "../../components/Articles";
 import axios from "axios";
 import Hero from "../../components/Hero";
-import  { Link } from "react-router-dom";
-import {BASE_URL} from "../../constants/BaseUrl";
+import { Link } from "react-router-dom";
+import { BASE_URL } from "../../constants/BaseUrl";
+import {
+  ArrowRight,
+  CheckCircle,
+  Cpu,
+  Globe,
+  Leaf,
+  Play,
+  Sprout,
+  TrendingUp,
+  Trophy,
+  Users,
+} from "lucide-react";
 const products = [
   {
     id: 1,
@@ -61,7 +73,6 @@ const products = [
   },
 ];
 
-
 interface blogTs {
   image: any;
   id: number;
@@ -69,32 +80,30 @@ interface blogTs {
   title: string;
   description?: string;
   platform: string;
-  author:string;
+  author: string;
 }
 
 export default function Home() {
-
   const [chunkSize, setChunkSize] = useState(4);
   const [productChunks, setProductChunks] = useState([]);
-//   const [isLoading, setIsLoading] = useState(false);
+  //   const [isLoading, setIsLoading] = useState(false);
   const [postData, setPostData] = useState<blogTs[]>([]);
-//   const [socoalMeadiaPosts, setSocoalMeadiaPosts] = useState<blogTs[]>([]);
-//   const router = useNavigate();
+  //   const [socoalMeadiaPosts, setSocoalMeadiaPosts] = useState<blogTs[]>([]);
+  //   const router = useNavigate();
 
-  const LoadPosts =async () => {
+  const LoadPosts = async () => {
     // setIsLoading(true);
-    const response = await axios.get(BASE_URL +"/api/posts",);
+    const response = await axios.get(BASE_URL + "/api/posts");
     // const res = await axios.get(BASE_URL +"/api/social-media",);
     console.log(response?.data);
     setPostData(response?.data);
 
     // setIsLoading(false);
-  }
+  };
 
   useEffect(() => {
     LoadPosts();
   }, []);
-
 
   useEffect(() => {
     const updateChunkSize = () => {
@@ -115,16 +124,15 @@ export default function Home() {
     };
 
     updateChunkSize();
-    window.addEventListener('resize', updateChunkSize);
+    window.addEventListener("resize", updateChunkSize);
 
     return () => {
-      window.removeEventListener('resize', updateChunkSize);
+      window.removeEventListener("resize", updateChunkSize);
     };
   }, []);
 
-
   useEffect(() => {
-    const chunks:any = [];
+    const chunks: any = [];
     for (let i = 0; i < products.length; i += chunkSize) {
       chunks.push(products.slice(i, i + chunkSize));
     }
@@ -136,235 +144,361 @@ export default function Home() {
     hidden: { opacity: 0, scale: 0.6 },
   };
 
-
-
   const zoomIn = {
     hidden: { opacity: 0, scale: 0.5 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
   };
 
-
-
   return (
-      <div className="">
-        <motion.div
-            className=""
-            // ref={ref}
-            variants={fadeInUp}
-            // initial="hidden"
-            // animate={control}
-        >
-            <Hero/>
-        </motion.div>
+    <div className="">
+      <motion.div
+        className=""
+        // ref={ref}
+        variants={fadeInUp}
+        // initial="hidden"
+        // animate={control}
+      >
+        <Hero />
+      </motion.div>
 
-        <div className="max-w-screen-xl mx-auto px-4 py-12">
-          <div className="flex flex-wrap items-center ">
-            <div className="w-full md:w-1/2 p-4">
-              <div className="relative">
+      <div className="relative bg-gradient-to-br from-emerald-50 via-white to-emerald-100 dark:from-emerald-900/30 dark:via-emerald-900/10 dark:to-emerald-900/30">
+        <div className="max-w-screen-2xl mx-auto px-4 py-16 md:py-24">
+          {/* Hero Section */}
+          <div className="flex flex-row items-center gap-4 lg:gap-7">
+            <div className="w-full relative group">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl transform group-hover:-translate-y-2 transition-all duration-300">
                 <Image
-                    src="/hero.png"
-                    // width={550}
-                    height={400}
-                    alt="Sustainable Agriculture"
-                    className="rounded-lg shadow-lg"
-                    style={{ zIndex: 99 }}
+                  src="/hero.png"
+                  width={700}
+                  height={600}
+                  alt="Sustainable Agriculture"
+                  className="object-cover w-full h-[500px]"
                 />
-            
-                <div className="absolute bottom-4 left-4 bg-green-200 text-green-800 p-4 rounded-lg flex items-center">
-                  <div className="flex-shrink-0 mr-4">
-                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c.917 0 1.84.173 2.688.496A9.956 9.956 0 0015.97 5.39C14.693 4.579 13.374 4 12 4 7.582 4 4 7.582 4 12c0 1.374.579 2.693 1.39 3.97A9.956 9.956 0 007.496 12.688C8.173 13.84 9.092 15 10 15h4v2h-2v2h4v-2h-2v-2h2c.927 0 1.754-.36 2.312-.938A9.956 9.956 0 0020 12c0-4.418-3.582-8-8-8z" />
-                    </svg>
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/50 via-transparent to-transparent" />
+              </div>
+
+              {/* Floating Stat Card */}
+              <div className="absolute -bottom-6 left-6 backdrop-blur-sm bg-white/80 dark:bg-slate-800/90 p-4 rounded-xl shadow-lg flex items-center gap-4 border border-emerald-100/30 animate-float">
+                <div className="bg-emerald-500/10 p-3 rounded-lg">
+                  <Trophy className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-emerald-800 dark:text-emerald-300">
+                    200+
                   </div>
-                  <div>
-                    <div className="text-lg font-semibold">50+</div>
-                    <div className="text-sm">Successfully Project Completed</div>
+                  <div className="text-sm text-emerald-700 dark:text-emerald-200">
+                    Global Projects Executed
                   </div>
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-1/2 p-4">
-              <h2 className="text-xl font-bold mb-4">
-                Our Journey Started Here
-              </h2>
-              <h3 className="text-xl text-green-600 mb-4">
-                Were Leader in Agriculture Market
-              </h3>
-              <p className="text-gray-600 mb-8 text-justify dark:text-white">
-                At Mol Agribussiness Ltd, we blend tradition with innovation to foster sustainable agricultural practices. From groundbreaking projects to transformative technologies, we are at the forefront of the industry, committed to growing a greener future.
-              </p>
-              <div className="flex items-center gap-3">
-                <Image
-                    src="/crop.jpeg"
-                    width={60}
-                    height={50}
-                    alt="Video Thumbnail"
-                    className="w-8 h-16 rounded-lg mr-4"
-                />
-                
-                <div>
-                  <div className="text-yellow-500 font-semibold">WATCH OUR SOCIAL MEDIA</div>
-                  <Link to="/news" className="ml-auto text-gray-800 hover:text-green-600 dark:text-white/25">Stay updated with our latest ventures →</Link>
 
+            <div className="w-full space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-emerald-900 dark:text-white">
+                <span className="bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 text-transparent bg-clip-text">
+                  Pioneering Sustainable Agriculture
+                </span>
+                <br />
+                <span className="text-2xl md:text-3xl font-semibold mt-2 block">
+                  Since 1995
+                </span>
+              </h2>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                  <h3 className="text-xl font-semibold text-emerald-800 dark:text-emerald-200">
+                    Industry Leaders in Agricultural Innovation
+                  </h3>
+                </div>
+
+                <p className="text-lg text-emerald-700 dark:text-emerald-300 leading-relaxed">
+                  Transforming global agriculture through cutting-edge
+                  technology and sustainable practices. Our achievements
+                  include:
+                </p>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { icon: Globe, text: "18 Countries Served" },
+                    { icon: TrendingUp, text: "40% Avg. Yield Increase" },
+                    { icon: Leaf, text: "1M+ Hectares Optimized" },
+                    { icon: Users, text: "5K+ Farming Partners" },
+                  ].map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-2 p-3 bg-white/50 dark:bg-slate-800/50 rounded-lg"
+                    >
+                      <item.icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                      <span className="text-sm font-medium text-emerald-800 dark:text-emerald-300">
+                        {item.text}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Media CTA */}
+              <div className="mt-8 p-6 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-emerald-100/30 backdrop-blur-sm">
+                <div className="flex items-center gap-4">
+                  <button className="group relative flex-shrink-0">
+                    <div className="w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center transform transition-all hover:scale-105">
+                      <Play className="w-8 h-8 text-white ml-1" />
+                    </div>
+                  </button>
+                  <div>
+                    <div className="text-lg font-semibold text-emerald-800 dark:text-emerald-300">
+                      Explore Our Impact Story
+                    </div>
+                    <p className="text-sm text-emerald-700 dark:text-emerald-400 mt-1">
+                      Watch how we're revolutionizing agriculture across
+                      continents
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div
-            className="max-w-screen-xl mx-auto mb-10"
-        >
+          {/* Mission Section */}
           <motion.div
-              className="flex justify-center items-start  px-12"
-              variants={fadeInUp}
+            className="mt-24 bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-700 dark:to-emerald-800 rounded-2xl p-8 md:p-12 shadow-xl"
+            variants={fadeInUp}
           >
-            <div className="">
-        
-              <p className=" text-base text-justify text-gray-600 dark:text-white">
-                Welcome to MOL Agribusiness Ltd, your trusted partner in sustainable agriculture. We are dedicated to providing high-quality agricultural products and services that help farmers thrive. MOL Agribusiness Ltd was founded with a mission to revolutionize the agricultural sector by introducing innovative and sustainable farming practices. With decades of experience and a deep understanding of the challenges faced by farmers, we aim to provide solutions that enhance productivity and profitability. Explore our wide range of solutions tailored to meet the needs of modern agriculture.
-              </p>
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-white">
+                Cultivating Tomorrow's Harvest Today
+              </h3>
+
+              <div className="grid md:grid-cols-3 gap-6 text-left">
+                {[
+                  {
+                    title: "Sustainable Practices",
+                    content:
+                      "ISO-certified eco-friendly farming systems reducing carbon footprint by 35%",
+                    icon: Sprout,
+                  },
+                  {
+                    title: "Tech-Driven Solutions",
+                    content:
+                      "AI-powered precision agriculture increasing ROI by 50%",
+                    icon: Cpu,
+                  },
+                  {
+                    title: "Global Network",
+                    content:
+                      "24/7 support across 18 time zones with local expertise",
+                    icon: Globe,
+                  },
+                ].map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-6 bg-white/10 rounded-xl backdrop-blur-sm"
+                  >
+                    <item.icon className="w-8 h-8 text-emerald-100 mb-4" />
+                    <h4 className="text-lg font-semibold text-white mb-2">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-emerald-100/90">
+                      {item.content}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <button className="mx-auto px-8 py-3 bg-white text-emerald-700 rounded-xl font-semibold hover:bg-emerald-50 hover:shadow-lg transition-all flex items-center gap-2">
+                Explore Our Solutions
+                <ArrowRight className="w-5 h-5" />
+              </button>
             </div>
           </motion.div>
         </div>
+      </div>
 
-        <section className="relative bg-cover bg-center"
-                 style={{
-                   backgroundImage: `url('/vast_farm.webp')`,
-                 }}
-        >
-      
-          <div className="max-w-screen-xl mx-auto py-20">
-            <h3 className="text-lg font-semibold text-[#40574F] px-6 pt-10">
-              Welcome to MOL Agribusiness Ltd
+      <section
+        className="relative bg-cover bg-center  "
+        style={{ backgroundImage: `url('/vast_farm.webp')` }}
+      >
+        <div className="max-w-screen-2xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 space-y-4">
+            <h3 className="text-2xl md:text-3xl font-bold text-emerald-900 dark:text-emerald-100">
+              Welcome to MOL Agribusines
             </h3>
-            <p className="text-xs text-justify text-white px-6">
-              Continuously improving and adopting new technologies
+            <p className="text-lg text-emerald-800 dark:text-emerald-200 font-medium max-w-2xl">
+              Pioneering Agricultural Innovation Through Cutting-Edge Technology
             </p>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3  mt-20 gap-10 px-6 pb-10">
-              <div className="p-3 bg-white dark:bg-slate-900 h-80 ">
+          <div className="flex overflow-x-auto pb-8 scrollbar-hide md:grid md:grid-cols-3 md:gap-8 md:overflow-visible">
+            {/* Card 1 - Modern Farming */}
+            <div
+              className="flex-shrink-0 w-80 md:w-full bg-white dark:bg-slate-800 rounded-2xl shadow-xl mx-2 md:mx-0 
+                     transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="relative h-48 overflow-hidden rounded-t-2xl">
                 <img
-                    src="/mordern.jpg"
-                    alt="Innovating Solutions for Modern Farming"
-                    className="h-2/5 w-full object-cover"
+                  src="/mordern.jpg"
+                  alt="Modern farming solutions"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
-                <div className="h-3/5">
-                  <h1 className="border-2 mt-2 border-r-0 border-green-900 border-b-0 border-l-2 border-t-0 px-3 font-bold text-xs text-left py-2">
-                    Innovating Solutions for Modern Farming
-                  </h1>
-                  <p className="p-1 mt-2 text-xs text-justify">
-                    Discover our innovative technologies designed to enhance farming efficiency and productivity. Our advanced solutions integrate cutting-edge technology with sustainable practices, ensuring that modern farmers can achieve higher yields while maintaining environmental balance. Explore how our tools and methods can revolutionize your farming operations.
-                  </p>
-                </div>
               </div>
-
-              <div className="p-3 bg-white dark:bg-slate-900 h-80  ">
-                <img
-                    src="/tractor.jpg"
-                    alt="Advanced Farm Equipment"
-                    className="h-2/5 w-full object-cover"
-                />
-                <div className="h-3/5">
-                  <h1 className="border-2 mt-2 border-r-0 border-green-900 border-b-0 border-l-2 border-t-0 px-3 font-bold text-xs py-2 text-left">
-                    Advanced Farm Equipment
-                  </h1>
-                  <p className="p-1 mt-2 text-xs  text-justify pb-2">
-                    Our state-of-the-art farm equipment helps you manage your farm with precision and ease. From automated tractors to smart irrigation systems, our equipment is designed to reduce labor, increase efficiency, and improve overall crop health. Learn how our machinery can make your farm more productive and sustainable.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-3 bg-white dark:bg-slate-900 h-80">
-                <img
-                    src="/topbar.jpg"
-                    alt="Maximizing Crop Yields"
-                    className="h-2/5 w-full object-cover"
-                />
-                <div className="h-3/5">
-                  <h1 className="border-2 mt-2 border-r-0 border-green-900 border-b-0 border-l-2 border-t-0 px-3 font-bold text-xs text-left py-2">
-                    Maximizing Crop Yields
-                  </h1>
-                  <p className="p-1 mt-2 text-xs text-justify">
-                    Our comprehensive solutions are tailored to maximize your crop yields. We provide expert guidance on soil management, crop rotation, and pest control, helping you achieve optimal growth conditions. Discover the benefits of our scientifically-backed practices and how they can lead to healthier, more bountiful harvests year after year.
-                  </p>
-                </div>
+              <div className="p-6 space-y-4">
+                <h2 className="text-xl font-bold text-emerald-900 dark:text-white border-l-4 border-emerald-500 pl-3">
+                  Smart Farming Solutions
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Revolutionize your operations with IoT-enabled precision
+                  agriculture tools that increase yield by up to 40% while
+                  reducing resource consumption. Our integrated farm management
+                  system provides real-time analytics for data-driven decisions.
+                </p>
+                <button
+                  className="text-emerald-600 dark:text-emerald-400 font-semibold text-sm flex items-center 
+                            hover:underline group"
+                >
+                  Explore Innovations
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
             </div>
 
+            {/* Card 2 - Advanced Equipment */}
+            <div
+              className="flex-shrink-0 w-80 md:w-full bg-white dark:bg-slate-800 rounded-2xl shadow-xl mx-2 md:mx-0 
+                     transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="relative h-48 overflow-hidden rounded-t-2xl">
+                <img
+                  src="/tractor.jpg"
+                  alt="Advanced farm machinery"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+              </div>
+              <div className="p-6 space-y-4">
+                <h2 className="text-xl font-bold text-emerald-900 dark:text-white border-l-4 border-emerald-500 pl-3">
+                  Next-Gen Agricultural Machinery
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Our autonomous farming equipment with AI-powered analytics
+                  reduces operational costs by 30% while maintaining 99.8%
+                  operational efficiency. Featuring GPS-guided precision and
+                  predictive maintenance systems.
+                </p>
+                <button
+                  className="text-emerald-600 dark:text-emerald-400 font-semibold text-sm flex items-center 
+                            hover:underline group"
+                >
+                  View Equipment Catalog
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+
+            {/* Card 3 - Crop Optimization */}
+            <div
+              className="flex-shrink-0 w-80 md:w-full bg-white dark:bg-slate-800 rounded-2xl shadow-xl mx-2 md:mx-0 
+                     transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="relative h-48 overflow-hidden rounded-t-2xl">
+                <img
+                  src="/topbar.jpg"
+                  alt="Crop yield optimization"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+              </div>
+              <div className="p-6 space-y-4">
+                <h2 className="text-xl font-bold text-emerald-900 dark:text-white border-l-4 border-emerald-500 pl-3">
+                  Yield Maximization Programs
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Achieve 15-25% higher yields through our integrated crop
+                  management system combining soil health monitoring,
+                  microclimate analysis, and AI-driven growth optimization
+                  strategies.
+                </p>
+                <button
+                  className="text-emerald-600 dark:text-emerald-400 font-semibold text-sm flex items-center 
+                            hover:underline group"
+                >
+                  Optimize Your Harvest
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
           </div>
-        </section>
 
-        <motion.div
-      
-        >
-          <Article />
-        </motion.div>
+          {/* Scroll Indicator */}
+          <div className="md:hidden mt-8 text-center">
+            <span className="inline-block h-2 w-20 bg-emerald-100 dark:bg-emerald-900 rounded-full">
+              <span className="animate-scroll-indicator block h-full w-1/3 bg-emerald-500 rounded-full"></span>
+            </span>
+          </div>
+        </div>
+      </section>
 
-        <motion.section
-            className="max-w-screen-xl mx-auto mt-10 px-6"
-            initial="hidden"
-            animate="visible"
-            variants={zoomIn}
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
-          {postData?.slice(0,3).map((card, index) => (
-              <CardArticle
-                  key={index}
-                  imageSrc={card?.image ? card.image : "/mol logo.png"}
-                  tag="Blog"
-                  title={card?.title}
-                  date={card?.created_at}
-                  id={card.id}
-                  link="#"
-                  view="home"
-              />
+      <motion.div>
+        <Article />
+      </motion.div>
 
-
+      <motion.section
+        className="max-w-screen-xl mx-auto mt-10 px-6"
+        initial="hidden"
+        animate="visible"
+        variants={zoomIn}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+          {postData?.slice(0, 3).map((card, index) => (
+            <CardArticle
+              key={index}
+              imageSrc={card?.image ? card.image : "/mol logo.png"}
+              tag="Blog"
+              title={card?.title}
+              date={card?.created_at}
+              id={card.id}
+              link="#"
+              view="home"
+            />
           ))}
+        </div>
+      </motion.section>
 
-          </div>
-        </motion.section>
-
-        <motion.section
-            className="mt-20 bg-[#f9fcfd] pb-10 bg-black/10"
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-        >
-          <div className="max-w-screen-xl mx-auto mt-20 mb-20">
-            <h3 className="text-lg font-semibold text-green-900 py-10 px-10">
-              Our Production
-            </h3>
-            <Carousel dots arrows autoplay className="px-10">
-              {productChunks.map((chunk:any, index:any) => (
-                  <div key={index}>
-                    <div className="flex gap-6 justify-center items-center">
-                      {chunk?.map((product:any, idx:any) => (
-                          <div key={idx}>
-                            <div className="productset">
-                              <div className="productsetimg">
-                                <img
-                                    src={product.pic}
-                                    alt={product.name}
-                                    className="rounded-lg w-full sm:w-full md:w-full lg:w-64 h-64 object-cover"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                      ))}
+      <motion.section
+        className="mt-20 bg-[#f9fcfd] pb-10 bg-black/10"
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+      >
+        <div className="max-w-screen-xl mx-auto mt-20 mb-20">
+          <h3 className="text-lg font-semibold text-green-900 py-10 px-10">
+            Our Production
+          </h3>
+          <Carousel dots arrows autoplay className="px-10">
+            {productChunks.map((chunk: any, index: any) => (
+              <div key={index}>
+                <div className="flex gap-6 justify-center items-center">
+                  {chunk?.map((product: any, idx: any) => (
+                    <div key={idx}>
+                      <div className="productset">
+                        <div className="productsetimg">
+                          <img
+                            src={product.pic}
+                            alt={product.name}
+                            className="rounded-lg w-full sm:w-full md:w-full lg:w-64 h-64 object-cover"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-              ))}
-            </Carousel>
-          </div>
-        </motion.section>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </motion.section>
 
-        <motion.div
-           
-        >
-          <FollowUs />
-        </motion.div>
-      </div>
+      <motion.div>
+        <FollowUs />
+      </motion.div>
+    </div>
   );
 }
