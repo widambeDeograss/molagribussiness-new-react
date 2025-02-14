@@ -31,11 +31,11 @@ const products = [
     name: "Cassava",
     pic: "/about1.jpg",
   },
-  {
-    id: 3,
-    name: "Maize",
-    pic: "/about.jpg",
-  },
+  // {
+  //   id: 3,
+  //   name: "Maize",
+  //   pic: "/about.jpg",
+  // },
   {
     id: 4,
     name: "Tomatoes",
