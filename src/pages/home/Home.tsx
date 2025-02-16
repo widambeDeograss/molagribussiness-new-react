@@ -31,11 +31,11 @@ const products = [
     name: "Cassava",
     pic: "/about1.jpg",
   },
-  // {
-  //   id: 3,
-  //   name: "Maize",
-  //   pic: "/about.jpg",
-  // },
+  {
+    id: 3,
+    name: "Maize",
+    pic: "/about.jpg",
+  },
   {
     id: 4,
     name: "Tomatoes",
@@ -51,11 +51,11 @@ const products = [
     name: "Tomatoes",
     pic: "/IMG-20240529-WA0018.jpg",
   },
-  {
-    id: 7,
-    name: "Cassava",
-    pic: "/IMG-20240529-WA0021.jpg",
-  },
+  // {
+  //   id: 7,
+  //   name: "Cassava",
+  //   pic: "/IMG-20240529-WA0021.jpg",
+  // },
   {
     id: 8,
     name: "Maize",
