@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, Image } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -22,7 +21,7 @@ const Article = () => {
     };
 
     return (
-        <div className="py-16 max-w-screen-xl mx-auto px-6">
+        <div className="py-16 max-w-screen-2xl mx-auto px-6">
             <motion.div
                 initial="hidden"
                 whileInView="visible"

@@ -16,10 +16,13 @@ import {
   Leaf,
   Play,
   Sprout,
+  Tractor,
   TrendingUp,
   Trophy,
+  UserPlus,
   Users,
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 const products = [
   {
     id: 1,
@@ -83,27 +86,22 @@ interface blogTs {
   author: string;
 }
 
+const fetchPosts = async (): Promise<blogTs[]> => {
+  const response = await axios.get(`${BASE_URL}/api/posts`);
+  return response.data;
+};
+
 export default function Home() {
   const [chunkSize, setChunkSize] = useState(4);
   const [productChunks, setProductChunks] = useState([]);
-  //   const [isLoading, setIsLoading] = useState(false);
-  const [postData, setPostData] = useState<blogTs[]>([]);
-  //   const [socoalMeadiaPosts, setSocoalMeadiaPosts] = useState<blogTs[]>([]);
-  //   const router = useNavigate();
 
-  const LoadPosts = async () => {
-    // setIsLoading(true);
-    const response = await axios.get(BASE_URL + "/api/posts");
-    // const res = await axios.get(BASE_URL +"/api/social-media",);
-    console.log(response?.data);
-    setPostData(response?.data);
+  const { data: postData = [] } = useQuery<blogTs[]>({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+  });
 
-    // setIsLoading(false);
-  };
 
-  useEffect(() => {
-    LoadPosts();
-  }, []);
 
   useEffect(() => {
     const updateChunkSize = () => {
@@ -168,7 +166,7 @@ export default function Home() {
             <div className="w-full relative group">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl transform group-hover:-translate-y-2 transition-all duration-300">
                 <Image
-                  src="/hero.png"
+                  src="/new/p1.jpeg"
                   width={700}
                   height={600}
                   alt="Sustainable Agriculture"
@@ -184,10 +182,10 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-emerald-800 dark:text-emerald-300">
-                    200+
+                    100+
                   </div>
                   <div className="text-sm text-emerald-700 dark:text-emerald-200">
-                    Global Projects Executed
+                  Hectares Cultivated
                   </div>
                 </div>
               </div>
@@ -196,11 +194,11 @@ export default function Home() {
             <div className="w-full space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold text-emerald-900 dark:text-white">
                 <span className="bg-gradient-to-r from-emerald-600 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 text-transparent bg-clip-text">
-                  Pioneering Sustainable Agriculture
+                Building a Future from the Soil Up
                 </span>
                 <br />
                 <span className="text-2xl md:text-3xl font-semibold mt-2 block">
-                  Since 1995
+                  Since 2020
                 </span>
               </h2>
 
@@ -208,22 +206,20 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                   <h3 className="text-xl font-semibold text-emerald-800 dark:text-emerald-200">
-                    Industry Leaders in Agricultural Innovation
+                   Using technology and Innovations in farming
                   </h3>
                 </div>
 
                 <p className="text-lg text-emerald-700 dark:text-emerald-300 leading-relaxed">
-                  Transforming global agriculture through cutting-edge
-                  technology and sustainable practices. Our achievements
-                  include:
+                I grow on 100 hectares using practical toold and technology. I'm here to share my journey and connect with partners who believe in meaningful growth.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { icon: Globe, text: "18 Countries Served" },
-                    { icon: TrendingUp, text: "40% Avg. Yield Increase" },
-                    { icon: Leaf, text: "1M+ Hectares Optimized" },
-                    { icon: Users, text: "5K+ Farming Partners" },
+               { icon: Leaf, text: "100+ Hectares of Cultivation" },
+               { icon: Tractor, text: "3 Tractors in Operation" },
+               { icon: TrendingUp, text: "Steady Year-on-Year Growth" },
+               { icon: UserPlus, text: "Open to Partnerships & Support" },
                   ].map((item, idx) => (
                     <div
                       key={idx}
@@ -273,21 +269,21 @@ export default function Home() {
               <div className="grid md:grid-cols-3 gap-6 text-left">
                 {[
                   {
-                    title: "Sustainable Practices",
+                    title: "Grounded in Nature",
                     content:
-                      "ISO-certified eco-friendly farming systems reducing carbon footprint by 35%",
+                      "Practicing simple, eco-friendly farming to protect and nourish the land.",
                     icon: Sprout,
                   },
                   {
-                    title: "Tech-Driven Solutions",
+                    title: "Tools That Work",
                     content:
-                      "AI-powered precision agriculture increasing ROI by 50%",
+                      "Using tractors and practical equipment to boost harvests and efficiency.",
                     icon: Cpu,
                   },
                   {
-                    title: "Global Network",
+                    title: "Open to Partnership",
                     content:
-                      "24/7 support across 18 time zones with local expertise",
+                      "Looking to connect, grow together, and tell a bigger story through collaboration.",
                     icon: Globe,
                   },
                 ].map((item, idx) => (
@@ -441,7 +437,7 @@ export default function Home() {
       </motion.div>
 
       <motion.section
-        className="max-w-screen-xl mx-auto mt-10 px-6"
+        className=" max-w-screen-2xl mx-auto mt-10 px-6"
         initial="hidden"
         animate="visible"
         variants={zoomIn}
@@ -468,8 +464,8 @@ export default function Home() {
         animate="visible"
         variants={fadeInUp}
       >
-        <div className="max-w-screen-xl mx-auto mt-20 mb-20">
-          <h3 className="text-lg font-semibold text-green-900 py-10 px-10">
+        <div className="max-w-screen-2xl mx-auto mt-20 mb-20">
+          <h3 className="text-lg font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent py-10 px-10">
             Our Production
           </h3>
           <Carousel dots arrows autoplay className="px-10">

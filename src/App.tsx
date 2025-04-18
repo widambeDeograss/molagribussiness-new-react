@@ -5,11 +5,13 @@ import { Provider } from "react-redux";
 import { AppStore, makeStore } from "./lib/store";
 import Routeer from "./router";
 import Loader from "./assets/react.svg";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 
 
 
 function App(){
-  const storeRef = useRef<AppStore>()
+  const storeRef = useRef<AppStore>();
+  const queryClient =  new QueryClient();
   if (!storeRef.current) {
       // Create the store instance the first time this renders
       storeRef.current = makeStore()
@@ -30,11 +32,13 @@ function App(){
   
         <div className="App">
           <Provider store={storeRef.current}>
+            <QueryClientProvider client={queryClient}>
             <BrowserRouter>
          
-                <Routeer/>
-             
-            </BrowserRouter>
+         <Routeer/>
+      
+     </BrowserRouter>
+            </QueryClientProvider>
           </Provider>
         </div>
    

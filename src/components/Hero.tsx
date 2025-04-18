@@ -1,6 +1,5 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Award, Globe, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Award } from 'lucide-react';
 
 const HeroSection = () => {
     const navigate = useNavigate();
@@ -8,35 +7,18 @@ const HeroSection = () => {
     return (
         <div className="relative min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden
                         dark:bg-[url('/hero-drone-farm-dark.jpg')] bg-[url('/hero-drone-farm-light.jpg')]">
-            
+
             {/* Adaptive gradient overlay */}
             <div className="absolute inset-0 
                            bg-gradient-to-r dark:from-emerald-900/80 from-emerald-100/95 
                            to-transparent dark:to-emerald-800/30" />
-            
+
             {/* Theme-aware glass container */}
             <div className="absolute inset-0 backdrop-blur-lg dark:bg-white/5 bg-white/80 
                           m-8 lg:m-16 rounded-[2.5rem]
                           border-2 dark:border-emerald-100/20 border-emerald-800/20 
                           shadow-2xl animate-float">
-                
-                {/* Trust badges with theme switching */}
-                <div className="absolute top-8 left-8 flex gap-4 items-center">
-                    <div className="flex items-center gap-2 dark:bg-white/10 bg-emerald-100
-                                  px-4 py-2 rounded-full transition-colors">
-                        <ShieldCheck className="w-5 h-5 dark:text-emerald-300 text-emerald-600" />
-                        <span className="text-sm font-medium dark:text-white text-emerald-900">
-                            ISO 9001 Certified
-                        </span>
-                    </div>
-                    <div className="flex items-center gap-2 dark:bg-white/10 bg-emerald-100
-                                  px-4 py-2 rounded-full transition-colors">
-                        <Globe className="w-5 h-5 dark:text-emerald-300 text-emerald-600" />
-                        <span className="text-sm font-medium dark:text-white text-emerald-900">
-                            Operational in 18 Countries
-                        </span>
-                    </div>
-                </div>
+
 
                 {/* Main content */}
                 <div className="relative h-full flex items-center justify-center px-6 py-24 lg:px-16">
@@ -45,28 +27,28 @@ const HeroSection = () => {
                                      px-6 py-2 rounded-full mb-8 animate-fade-in transition-colors">
                             <Award className="w-5 h-5 dark:text-emerald-300 text-emerald-600" />
                             <span className="text-sm font-semibold dark:text-white text-emerald-900">
-                                2024 Global Agribusiness Excellence Award Winner
+                                Proudly Cultivating 100+ Hectares of Tanzanian Soil
                             </span>
                         </div>
 
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold 
                                      dark:text-white text-emerald-900 
                                      leading-tight tracking-tighter drop-shadow-2xl">
-                            Transform Your Agricultural Potential with
+                            Turning Passion into Progress with
                             <span className="block mt-4 
                                            bg-gradient-to-r dark:from-emerald-300 from-emerald-600 
                                            dark:to-emerald-500 to-emerald-800
                                            text-transparent bg-clip-text">
-                                Precision Innovation
+                                Hands-On Farming Innovation
                             </span>
                         </h1>
 
                         {/* Stats grid */}
                         <div className="grid grid-cols-3 gap-8 max-w-4xl mx-auto py-8">
                             {[
-                                { value: '25+', label: 'Years Experience' },
-                                { value: '5K+', label: 'Commercial Partners' },
-                                { value: '40%', label: 'Yield Increase Avg.' }
+                                { value: '100', label: 'Hectares of Farmland' },
+                                { value: '3+', label: 'Tractors & Implements in Use' },
+                                { value: '5+', label: 'Seasoned Years in Agriculture' }
                             ].map((stat, index) => (
                                 <div key={index} className="text-center">
                                     <div className="text-4xl font-bold 
@@ -84,14 +66,16 @@ const HeroSection = () => {
                         <p className="text-xl lg:text-2xl font-medium 
                                     dark:text-white/95 text-emerald-900 
                                     leading-relaxed max-w-3xl mx-auto">
-                            Leverage our AI-powered agricultural solutions and global network to increase 
-                            productivity while reducing environmental impact. Partner with industry leaders 
-                            managing over <strong className="dark:text-emerald-300 text-emerald-700">1.2 million hectares</strong> worldwide.
+                            I'm a farmer committed to growing sustainably, efficiently, and with heart.
+                            With 100 hectares under cultivation, I’ve embraced mechanized tools to
+                            boost productivity. Now, I’m opening my journey to the world —
+                            seeking growth partnerships, investment opportunities, and connections
+                            that can help me take my farm to the next level. <strong className="dark:text-emerald-300 text-emerald-700">1.2 million hectares</strong> worldwide.
                         </p>
 
                         {/* Theme-aware buttons */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-12">
-                            <button 
+                            <button
                                 onClick={() => navigate("/solutions")}
                                 className="group px-8 py-4 text-lg font-bold 
                                          dark:bg-emerald-500 bg-emerald-600
@@ -107,8 +91,8 @@ const HeroSection = () => {
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 
                                                      transition-transform" />
                             </button>
-                            
-                            <button 
+
+                            <button
                                 onClick={() => navigate("/contact")}
                                 className="group px-8 py-4 text-lg font-bold 
                                          bg-transparent dark:text-white text-emerald-900
@@ -118,7 +102,7 @@ const HeroSection = () => {
                                          transition-all duration-300 
                                          flex items-center gap-3"
                             >
-                                <span>Schedule Executive Consultation</span>
+                                <span>Get in Touch for Opportunities</span>
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 
                                                      transition-transform" />
                             </button>
@@ -129,17 +113,17 @@ const HeroSection = () => {
                 {/* Investor section with theme adaptation */}
                 <div className="absolute bottom-8 left-0 right-0 text-center">
                     <p className="text-sm dark:text-white/80 text-emerald-700 mb-2">
-                        Publicly Traded on:
+                        Let’s build the future of farming — together.
                     </p>
                     <div className="flex justify-center gap-6 items-center">
                         <span className="text-2xl font-bold dark:text-emerald-300 text-emerald-600">
-                            NASDAQ: MOLAG
+                            Open to Investors
                         </span>
                         <span className="text-lg dark:text-white/90 text-emerald-700">
-                            $3.2B Market Cap
+                            Seeking Growth Partners
                         </span>
                         <span className="text-lg dark:text-emerald-400 text-emerald-600">
-                            ↑ 14.5% YTD
+                            Committed to Impact
                         </span>
                     </div>
                 </div>

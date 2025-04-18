@@ -41,7 +41,7 @@ export default function Footer() {
 
   return (
     <footer className="mt-auto bg-green-300/10 w-full dark:bg-neutral-950">
-      <div className="mt-auto w-full max-w-screen-xl py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
+      <div className="mt-auto w-full max-w-screen-2xl py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
           <div className="col-span-full lg:col-span-1">
             <div className="flex flex-row gap-4">
@@ -265,7 +265,7 @@ export default function Footer() {
         </svg>
 
         <div className="relative z-10">
-          <div className="w-full max-w-screen-xl px-10  py-4   mx-auto">
+          <div className="w-full max-w-screen-2xl px-10  py-4   mx-auto">
             <div className="mt- sm:mt-12 grid sm:gap-y-0 sm:flex sm:justify-between sm:items-center ">
               <div className="inline-flex items-center">
                 <p className="font-semibold text-[#ffff]">

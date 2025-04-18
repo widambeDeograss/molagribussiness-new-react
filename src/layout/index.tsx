@@ -7,7 +7,7 @@ function Layout() {
   return (
     <div>
       <TopBar />
-      <div>
+      <div className="flex-1">
         <Outlet />
       </div>
       <div className="">
