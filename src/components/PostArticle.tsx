@@ -27,50 +27,57 @@ const PostArticle = ({ post }: any) => {
                     <Blocks
                         data={JSON.parse(post.content)}
                         config={{
-                            code: {
-                                className: "language-js"
-                            },
-                            delimiter: {
-                                className: "border border-2 w-16 mx-auto"
-                            },
-                            embed: {
-                                className: "border-0"
+                            paragraph: {
+                              className: "mb-4 text-lg leading-relaxed text-gray-700 dark:text-gray-300",
                             },
                             header: {
-                                className: "font-bold"
+                              className: "mt-5 mb-4 font-bold",
+                              levels: {
+                                1: "text-4xl",
+                                2: "text-3xl",
+                                3: "text-2xl",
+                                4: "text-xl",
+                                5: "text-lg",
+                                6: "text-base"
+                              }
                             },
                             image: {
-                                className: "w-full max-w-screen-md",
-                                actionsClassNames: {
-                                    stretched: "w-full h-80 object-cover",
-                                    withBorder: "border border-2",
-                                    withBackground: "p-2",
-                                }
+                              className: "img-fluid rounded mb-4"
                             },
                             list: {
-                                className: "list-inside list-disc pl-5",
-                                type: {
-                                    ordered: "list-decimal",
-                                    unordered: "list-disc",
-
-                                }
+                              className: "mb-4 list-disc pl-5",
+                              item: "mb-2"
                             },
-                            paragraph: {
-                                className: "text-base text-opacity-75",
-                                actionsClassNames: {
-                                    alignment: "text-left", // This is a substitution placeholder: left or center.
-                                }
+                            checklist: {
+                              className: "mb-4 list-none pl-5",
+                              item: "flex items-center mb-2",
+                              checkbox: "mr-2"
                             },
+                            // table: {
+                            //   className: "w-full mb-4 border-collapse",
+                            //   row: "border-b",
+                            //   cell: "p-2 border"
+                            // },
+                        
+                              table: {
+                                className: " mt-5 table table-striped"
+                              },
                             quote: {
-                                className: "py-3 px-5 italic font-serif"
+                              className: "border-l-4 border-gray-300 pl-4 mb-4 italic py-3 px-5"
                             },
-                            table: {
-                                className: "table-auto w-full border-collapse border-spacing-2 border border-gray-300",
-                                actionsClassNames: {
-                                    cell: "border-2 border-gray-300 p-4",
-                                }
+                            // code: {
+                            //   className: "bg-gray-100 p-2 rounded mb-4 font-mono text-sm"
+                            // },
+                            delimiter: {
+                              className: "my-8 border-t-2 border-gray-200"
+                            },
+                            embed: {
+                              className: "mb-4"
+                            },
+                            warning: {
+                              className: "bg-yellow-100 p-4 rounded mb-4 border-l-4 border-yellow-500"
                             }
-                        }}
+                          }}
                         renderers={{
                             checkList: Checklist,
                         }}

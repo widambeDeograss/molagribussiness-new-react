@@ -6,7 +6,7 @@ const HeroSection = () => {
 
     return (
         <div className="relative min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden
-                        dark:bg-[url('/hero-drone-farm-dark.jpg')] bg-[url('/hero-drone-farm-light.jpg')]">
+                        dark:bg-[url('/hero-drone-farm.jpg')] bg-[url('/hero1.jpg')]">
 
             {/* Adaptive gradient overlay */}
             <div className="absolute inset-0 
@@ -70,7 +70,7 @@ const HeroSection = () => {
                             With 100 hectares under cultivation, I’ve embraced mechanized tools to
                             boost productivity. Now, I’m opening my journey to the world —
                             seeking growth partnerships, investment opportunities, and connections
-                            that can help me take my farm to the next level. <strong className="dark:text-emerald-300 text-emerald-700">1.2 million hectares</strong> worldwide.
+                            that can help me take my farm to the next leve.
                         </p>
 
                         {/* Theme-aware buttons */}

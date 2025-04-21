@@ -6,7 +6,6 @@ import FollowUs from "../../components/FollowUs";
 import { CardArticle } from "../../components/Articles";
 import axios from "axios";
 import Hero from "../../components/Hero";
-import { Link } from "react-router-dom";
 import { BASE_URL } from "../../constants/BaseUrl";
 import {
   ArrowRight,
@@ -20,7 +19,6 @@ import {
   TrendingUp,
   Trophy,
   UserPlus,
-  Users,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 const products = [

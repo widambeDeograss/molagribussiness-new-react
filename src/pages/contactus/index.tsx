@@ -1,5 +1,5 @@
 'use client'
-import { Avatar, message } from "antd";
+import { message } from "antd";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone, BookOpen } from "lucide-react";
 import {
